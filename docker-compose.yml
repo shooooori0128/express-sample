@@ -1,0 +1,29 @@
+version: '3'
+services:
+  db:
+    build:
+      context: ./docker/db
+      dockerfile: Dockerfile
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: sample
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: docker
+      TZ: 'Asia/Tokyo'
+    ports:
+      - 3306:3306
+    volumes:
+      - ./docker/db/mysql:/var/lib/mysql
+      - ./docker/db/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./docker/db/initdb.d:/docker-entrypoint-initdb.d
+  app:
+    build:
+      context: ./docker/app
+      dockerfile: Dockerfile
+    depends_on:
+      - "db"
+    ports:
+      - 3000:3000
+    volumes:
+      - ./src:/src
+    command: [sh, -c, npm install && npm start]

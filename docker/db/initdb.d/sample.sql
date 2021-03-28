@@ -1,0 +1,18 @@
+DROP SCHEMA IF EXISTS sample;
+
+CREATE SCHEMA sample;
+
+USE sample;
+
+DROP TABLE IF EXISTS users;
+
+CREATE TABLE users
+(
+  id   BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL
+);
+
+INSERT INTO users (id, name)
+VALUES
+(1, "山田太郎"),
+(2, "山田花子");

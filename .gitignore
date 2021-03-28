@@ -102,3 +102,12 @@ dist
 
 # TernJS port file
 .tern-port
+
+# MySQL data
+docker/db/mysql
+
+# VSCode Addin `Local history`
+.history
+
+# Mac DS_Store
+.DS_Store
